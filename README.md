@@ -1,5 +1,5 @@
 # This Ale's For You!
-<strong>An exploration of the DC/Maryland/Virginia (DMV) beer scene and a beer recommender system</strong>
+<strong>An exploration of the DC/Maryland/Virginia (DMV) beer scene and a beer recommender system</strong>
 
 ## Executive Summary
 
