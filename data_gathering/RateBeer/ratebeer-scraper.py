@@ -9,30 +9,30 @@ driver = webdriver.Chrome(executable_path='../chromedriver')
 # region_name = input("Please enter the region name: ")
 
 arealist =[
-    {
-    'url':'https://www.ratebeer.com/breweries/washington-dc/48/213/',
-    'name': 'DC'
-    },
-    {
-    'url':'https://www.ratebeer.com/breweries/delaware/8/213/',
-    'name': 'DE'
-    },
+    # {
+    # 'url':'https://www.ratebeer.com/breweries/washington-dc/48/213/',
+    # 'name': 'DC'
+    # }
+    # # {
+    # # 'url':'https://www.ratebeer.com/breweries/delaware/8/213/',
+    # # 'name': 'DE'
+    # # },
     {
     'url':'https://www.ratebeer.com/breweries/maryland/20/213/',
     'name': 'MD'
     },
-    {
-    'url':'https://www.ratebeer.com/breweries/pennsylvania/38/213/,
-    'name': 'PA'
-    },
+    # {
+    # 'url':'https://www.ratebeer.com/breweries/pennsylvania/38/213/',
+    # 'name': 'PA'
+    # },
     {
     'url':'https://www.ratebeer.com/breweries/virginia/46/213/',
     'name': 'VA'
-    },
-    {
-    'url':'https://www.ratebeer.com/breweries/west%20virginia/49/213/',
-    'name': 'WV'
-    }]
+    }
+    # {
+    # 'url':'https://www.ratebeer.com/breweries/west%20virginia/49/213/',
+    # 'name': 'WV'
+    ]
 
 for state in arealist:
     driver.get(state['url'])
@@ -57,7 +57,7 @@ for state in arealist:
 
     allbrews = []
 
-    for brewery in region_brews[:1]:
+    for brewery in region_brews:
         
         driver.get(brewery['link'])
         sleep(10)
@@ -69,23 +69,23 @@ for state in arealist:
         except:
             brewery['google_map_link'] = None
         try:
-            brewery['address'] = soup.find('a',{'title':'View beermap'}).find_all('span')[0].text
+            brewery['address'] = soup.find('a',{'title':'View beermap'}).find('span',{'itemprop':'streetAddress'}).text
         except:
             brewery['address'] = None
         try:
-            brewery['town'] = soup.find('a',{'title':'View beermap'}).find_all('span')[1].text
+            brewery['town'] = soup.find('a',{'title':'View beermap'}).find('span',{'itemprop':'addressLocality'}).text
         except:
             brewery['town'] = None
         try:
-            brewery['state'] = soup.find('a',{'title':'View beermap'}).find_all('span')[2].text
+            brewery['state'] = soup.find('a',{'title':'View beermap'}).find('span',{'itemprop':'addressRegion'}).text
         except:
             brewery['state'] = None
         try:
-            brewery['country'] = soup.find('a',{'title':'View beermap'}).find_all('span')[3].text
+            brewery['country'] = soup.find('a',{'title':'View beermap'}).find('span',{'itemprop':'addressCountry'}).text
         except:
             brewery['country'] = None
         try:
-            brewery['postal_code'] = soup.find('a',{'title':'View beermap'}).find_all('span')[4].text
+            brewery['postal_code'] = soup.find('a',{'title':'View beermap'}).find('span',{'itemprop':'postalCode'}).text
         except:
             brewery['postal_code'] = None
 
